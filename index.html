@@ -1,620 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SATHYA STORE - Pro Gamer Developer</title>
-  
-  <!-- Fonts & Icons -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    crossorigin="anonymous"
-  />
-
-  <style>
-    :root {
-      --primary-bg: #1a1a2e;
-      --secondary-bg: #0f3460;
-      --accent-color: #e94560;
-      --text-color: #ffffff;
-      --light-text: #e0e0e0;
-      --skill-bar-bg: #333;
-      --skill-bar-fill: var(--accent-color);
-      --nav-height: 60px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Poppins", sans-serif;
-      background-color: var(--primary-bg);
-      color: var(--text-color);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    /* Navbar */
-    .navbar {
-      position: sticky;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: rgba(15, 52, 96, 0.95);
-      padding: 15px 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-      backdrop-filter: saturate(180%) blur(10px);
-    }
-
-    .navbar .container {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-    }
-
-    .navbar-brand {
-      font-family: "Montserrat", sans-serif;
-      font-size: 1.8em;
-      font-weight: 700;
-      color: var(--accent-color);
-      text-decoration: none;
-      letter-spacing: 1px;
-      user-select: none;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-    }
-
-    .nav-links li a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1em;
-      transition: color 0.3s ease, transform 0.3s ease;
-      position: relative;
-    }
-
-    .nav-links li a::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 2px;
-      background-color: var(--accent-color);
-      left: 50%;
-      bottom: -5px;
-      transform: translateX(-50%);
-      transition: width 0.3s ease;
-      border-radius: 2px;
-    }
-
-    .nav-links li a:hover::after,
-    .nav-links li a.active::after {
-      width: 100%;
-    }
-
-    .nav-links li a:hover,
-    .nav-links li a.active {
-      color: var(--accent-color);
-      transform: translateY(-2px);
-    }
-
-    /* Hamburger menu for mobile */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .menu-toggle span {
-      height: 3px;
-      width: 25px;
-      background: var(--text-color);
-      margin: 4px 0;
-      border-radius: 2px;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .menu-toggle.active span:nth-child(1) {
-      transform: rotate(-45deg) translate(-5px, 6px);
-    }
-
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-toggle.active span:nth-child(3) {
-      transform: rotate(45deg) translate(-5px, -6px);
-    }
-
-    /* Header */
-    header {
-      background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
-      padding: 100px 20px 60px;
-      width: 100%;
-      border-bottom: 2px solid var(--accent-color);
-      position: relative;
-      overflow: hidden;
-      padding-top: calc(80px + var(--nav-height));
-      text-align: center;
-    }
-
-    header::before,
-    header::after {
-      content: "";
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
-      opacity: 0.1;
-      border-radius: 50%;
-      animation: pulse 4s infinite alternate;
-    }
-
-    header::after {
-      animation-direction: alternate-reverse;
-      bottom: -50px;
-      right: -50px;
-    }
-
-    header::before {
-      top: -50px;
-      left: -50px;
-    }
-
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-        opacity: 0.1;
-      }
-      100% {
-        transform: scale(1.2);
-        opacity: 0.2;
-      }
-    }
-
-    .profile-img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--accent-color);
-      box-shadow: 0 0 15px rgba(233, 69, 96, 0.6);
-      margin-bottom: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .profile-img:hover {
-      transform: scale(1.05) rotate(5deg);
-      box-shadow: 0 0 25px rgba(233, 69, 96, 0.8);
-    }
-
-    .hero h1 {
-      font-family: "Montserrat", sans-serif;
-      font-size: 3.5em;
-      margin-bottom: 10px;
-      color: var(--text-color);
-      letter-spacing: 2px;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero p.tagline {
-      font-size: 1.5em;
-      color: var(--light-text);
-      margin-bottom: 30px;
-      font-weight: 300;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Sections */
-    section {
-      padding: 80px 20px;
-      width: 100%;
-      margin-bottom: 2px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      position: relative;
-      z-index: 1;
-    }
-
-    section:nth-of-type(odd) {
-      background-color: var(--primary-bg);
-    }
-    section:nth-of-type(even) {
-      background-color: var(--secondary-bg);
-    }
-
-    section h2 {
-      font-family: "Montserrat", sans-serif;
-      font-size: 2.8em;
-      color: var(--accent-color);
-      margin-bottom: 40px;
-      position: relative;
-      display: inline-block;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    }
-
-    section h2::after {
-      content: "";
-      width: 80px;
-      height: 4px;
-      background-color: var(--text-color);
-      position: absolute;
-      left: 50%;
-      bottom: -10px;
-      transform: translateX(-50%);
-      border-radius: 2px;
-    }
-
-    .about-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .about-content p {
-      font-size: 1.1em;
-      color: var(--light-text);
-      text-align: justify;
-      margin-bottom: 10px;
-      line-height: 1.7;
-    }
-
-    .about-info span {
-      display: block;
-      font-size: 1.2em;
-      margin-top: 10px;
-      font-weight: 600;
-    }
-
-    .about-info span em {
-      color: var(--accent-color);
-      font-style: normal;
-    }
-
-    /* Skills */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .skill {
-      background: #0f3460;
-      padding: 20px 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
-      transition: box-shadow 0.3s ease;
-    }
-
-    .skill:hover {
-      box-shadow: 0 0 25px rgba(233, 69, 96, 0.8);
-    }
-
-    .skill h3 {
-      font-family: "Montserrat", sans-serif;
-      color: var(--accent-color);
-      margin-bottom: 12px;
-      font-weight: 700;
-      font-size: 1.6em;
-    }
-
-    .skill p {
-      font-size: 1em;
-      color: var(--light-text);
-      margin-bottom: 10px;
-      font-weight: 400;
-      min-height: 65px;
-    }
-
-    .skill .skill-bar {
-      background: var(--skill-bar-bg);
-      border-radius: 10px;
-      height: 12px;
-      overflow: hidden;
-      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
-    }
-
-    .skill .skill-bar-fill {
-      height: 100%;
-      background: var(--skill-bar-fill);
-      width: 0;
-      border-radius: 10px;
-      transition: width 1.2s ease-in-out;
-    }
-
-    /* Animate skill bar fill */
-    .skill.visible .skill-bar-fill {
-      width: var(--skill-level);
-    }
-
-    /* Contact */
-    .contact-container {
-      max-width: 700px;
-      margin: 0 auto;
-      background-color: var(--primary-bg);
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(233, 69, 96, 0.7);
-    }
-
-    .contact-container h3 {
-      font-family: "Montserrat", sans-serif;
-      font-weight: 700;
-      color: var(--accent-color);
-      font-size: 2em;
-      margin-bottom: 25px;
-      text-align: center;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-    }
-
-    .contact-info a {
-      font-size: 1.2em;
-      color: var(--text-color);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    .contact-info a:hover {
-      color: var(--accent-color);
-      text-decoration: underline;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: var(--secondary-bg);
-      font-size: 0.9em;
-      color: var(--light-text);
-      user-select: none;
-      margin-top: 40px;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background-color: var(--secondary-bg);
-        position: absolute;
-        top: var(--nav-height);
-        right: 0;
-        width: 180px;
-        border-radius: 0 0 0 12px;
-        box-shadow: -3px 5px 15px rgba(0, 0, 0, 0.3);
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SATHYA STORE Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --success: #00b894;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--light);
+            background-image: url('https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/thumbnail.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header {
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .music-control {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .music-control:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: scale(1.1);
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .payment-method {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .payment-method:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .payment-method i {
+            font-size: 30px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .payment-method img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin: 0 auto 10px;
+            display: block;
+        }
+        
+        .payment-method span {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .qris-container {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+        
+        .qris-container img {
+            max-width: 200px;
+            border-radius: 10px;
+            margin: 0 auto 15px;
+            display: block;
+            border: 2px solid white;
+        }
+        
+        .qris-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .account-details {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .account-details h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+        
+        .account-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .account-item span:first-child {
+            opacity: 0.8;
+        }
+        
+        .account-item span:last-child {
+            font-weight: 600;
+        }
+        
+        .note {
+            margin-top: 25px;
+            font-size: 13px;
+            opacity: 0.8;
+            line-height: 1.6;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .note ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .note li {
+            margin-bottom: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 600px) {
+            .payment-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <nav class="navbar" role="navigation" aria-label="Main Navigation">
     <div class="container">
-      <a href="#home" class="navbar-brand" aria-label="Sathya Store Homepage">SATHYA STORE</a>
-      <ul class="nav-links" id="nav-links" role="menu">
-        <li role="none"><a href="#home" role="menuitem" class="active">Home</a></li>
-        <li role="none"><a href="#about" role="menuitem">About</a></li>
-        <li role="none"><a href="#skills" role="menuitem">Skills</a></li>
-        <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
-      </ul>
-      <div class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links" role="button" tabindex="0">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+        <div class="header">
+            <div class="music-control" id="musicControl">
+                <i class="fas fa-music"></i>
+            </div>
+            <h1>SATHYA STORE PAYMENT</h1>
+            <p>Choose your preferred payment method</p>
+        </div>
+        
+        <div class="content">
+            <div class="payment-methods">
+                <div class="payment-method" onclick="showQRIS()">
+                    <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris.png" alt="QRIS">
+                    <span>QRIS</span>
+                </div>
+                
+                <div class="payment-method" onclick="showAccount('DANA', '081329731976')">
+                    <i class="fab fa-google-wallet" style="color: #00a0e9;"></i>
+                    <span>DANA</span>
+                </div>
+                <div class="payment-method" onclick="showAccount('SEABANK', '901528584218')">
+                    <i class="fab fa-google-wallet" style="color: #00a0e9;"></i>
+                    <span>SEABANK</span>
+                </div>
+                <div class="payment-method" onclick="showAccount('Gopay', '081329731976')">
+                    <i class="fas fa-wallet" style="color: #00aa13;"></i>
+                    <span>Gopay</span>
+                </div>
+                
+                <div class="payment-method" onclick="showAccount('OVO', '081329731976')">
+                    <i class="fas fa-mobile-alt" style="color: #4e2e8a;"></i>
+                    <span>OVO</span>
+                </div>
+                
+                <div class="payment-method" onclick="window.open('https://saweria.co/sathyastore', '_blank')">
+                    <i class="fas fa-hand-holding-usd" style="color: #f8d64e;"></i>
+                    <span>Saweria</span>
+                </div>
+                
+                <div class="payment-method" onclick="window.open('https://www.paypal.me/sathyamahesvara', '_blank')">
+                    <i class="fab fa-paypal" style="color: #003087;"></i>
+                    <span>PayPal</span>
+                </div>
+                
+                <div class="payment-method" onclick="showAccount('ShopeePay', '081329731976')">
+                    <i class="fas fa-shopping-bag" style="color: #ee4d2d;"></i>
+                    <span>ShopeePay</span>
+                </div>
+                
+                <div class="payment-method" onclick="showAccount('NOBU MADERA', '86100769153')">
+                    <i class="fas fa-university" style="color: #8b4513;"></i>
+                    <span>NOBU MADERA</span>
+                </div>
+            </div>
+            
+            <div class="qris-container" id="qrisContainer" style="display: none;">
+                <h3 class="qris-title">QRIS Payment</h3>
+                <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris.png" alt="QRIS Code">
+                <p>Scan this QR code using your mobile banking app</p>
+                <button class="btn" onclick="copyToClipboard('QRIS Code copied!')">
+                    <i class="fas fa-copy"></i> Copy Payment Code
+                </button>
+            </div>
+            
+            <div class="account-details" id="accountDetails" style="display: none;">
+                <h3 id="accountTitle">Account Details</h3>
+                <div class="account-item">
+                    <span>Account Name:</span>
+                    <span>SATHYA STORE/ɪ ᴘᴜᴛᴜ ꜱᴀᴛʜʏᴀ ᴍᴀʜᴇꜱᴠᴀʀᴀ</span>
+                </div>
+                <div class="account-item">
+                    <span>Payment Method:</span>
+                    <span id="methodName">-</span>
+                </div>
+                <div class="account-item">
+                    <span>Account Number:</span>
+                    <span id="accountNumber">-</span>
+                </div>
+                <button class="btn" onclick="copyToClipboard(document.getElementById('accountNumber').innerText)">
+                    <i class="fas fa-copy"></i> Copy Account Number
+                </button>
+            </div>
+            
+            <div class="note">
+                <strong>📌 Important Notes:</strong>
+                <ul>
+                    <li>Send <em>screenshot</em> or <em>transaction ID</em> after payment</li>
+                    <li>Order will be <em>processed after payment confirmation</em></li>
+                    <li>Save <em>payment proof</em> for warranty claims</li>
+                </ul>
+                <p style="margin-top: 10px; font-style: italic;">⚡️ Thank you for choosing SATHYA STORE!</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            &copy; 2023 SATHYA STORE | All Rights Reserved
+        </div>
     </div>
-  </nav>
-
-  <header id="home" role="banner" tabindex="-1">
-    <div class="container hero" aria-label="Introduction section">
-      <img
-        src="https://telegra.ph/file/a80b7f30770ea1f67b2b5.jpg"
-        alt="Profile photo of Sathya Store developer"
-        class="profile-img"
-        loading="lazy"
-        width="180"
-        height="180"
-      />
-      <h1>Pro Gamer Developer</h1>
-      <p class="tagline" aria-label="Professional developer tagline">Your gateway to next-level gaming & digital innovation.</p>
-    </div>
-  </header>
-
-  <section id="about" aria-labelledby="about-title" tabindex="-1">
-  <h2 id="about-title">About Me</h2>
-  <div class="about-content">
-    <p>
-      👋 Halo Sobat Digital! Aku <em>Sathya Store</em> — tempat terbaik buat kamu yang butuh solusi canggih dalam <strong>game development</strong>, <strong>bot scripting</strong>, dan <strong>sosial media automation</strong>.
-    </p>
-    <p>
-      🚀 Mau naik level dalam game atau optimasi bisnis online kamu? Kami siap bantu dengan layanan berkualitas dan inovasi terbaru!
-    </p>
-
-    <h3>✨ Layanan Unggulan Kami:</h3>
-    <ul>
-      <li>📱 Murid Nokos siap pakai, mudah dan praktis</li>
-      <li>🚀 Suntik Sosmed via apk & bot anti ribet</li>
-      <li>👤 Jadi reseller panel, raih cuan maksimal</li>
-      <li>🎮 Top Up semua game favoritmu</li>
-      <li>🤖 Sewa bot powerfull, tanpa ribet</li>
-      <li>📲 Bot Pushkontak otomatis dan efektif</li>
-      <li>💻 Panel Bot lengkap, mudah dipakai</li>
-      <li>📜 Script Bot siap pakai, tinggal klik!</li>
-      <li>🆕 Jasa Install & Domain Pterodactyl + VPS Digital Ocean</li>
-    </ul>
-
-    <h3>🎯 Kenapa Pilih Sathya Store?</h3>
-    <ul>
-      <li>Support penuh, cepat tanggap</li>
-      <li>Harga bersaing, kualitas juara</li>
-      <li>Update teknologi terbaru setiap saat</li>
-    </ul>
-
-    <p>
-      🛒 <strong>Siap Order?</strong> Klik di bawah ini dan mulai perjalanan digitalmu sekarang juga!
-    </p>
-    <p>
-      🔗 <a href="https://wa.me/6281329731976?text=.ordersosmed" target="_blank" rel="noopener">Order Sosmed</a><br />
-      🛒 <a href="https://wa.me/6281329731976?text=.allmenu" target="_blank" rel="noopener">All Layanan Pembelian</a>
-    </p>
-    <p>
-      📲 Unduh aplikasi kami juga di:<br />
-      <a href="https://sathyastore.digitalshop.id/download" target="_blank" rel="noopener">https://sathyastore.digitalshop.id/download</a>
-    </p>
-
-    <p><em>Sathya Store — BEE SMART BUYER & SELLER</em></p>
-
-    <p class="about-info">
-      <strong>Contact:</strong> <a href="tel:+6281329731976" aria-label="Call Sathya Store">+62 813-2973-1976</a><br />
-      <strong>Email:</strong> <a href="mailto:sathyastore033@gmail.com" aria-label="Email Sathya Store">sathyastore033@gmail.com</a><br />
-    </p>
-  </div>
-</section>
-
-
-  <section id="skills" aria-labelledby="skills-title" tabindex="-1">
-    <h2 id="skills-title">Skills & Services</h2>
-    <div class="skills-grid" aria-label="List of skills and services offered">
-      <article class="skill" tabindex="0" aria-describedby="skill1-desc">
-        <h3>Pterodactyl Panel</h3>
-        <p id="skill1-desc">Expert setup and customization of Pterodactyl panels for game server hosting with security and performance in mind.</p>
-        <div class="skill-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90" aria-label="Pterodactyl Panel skill level">
-          <div class="skill-bar-fill" style="--skill-level: 90%"></div>
-        </div>
-      </article>
-
-      <article class="skill" tabindex="0" aria-describedby="skill2-desc">
-        <h3>Bot Development</h3>
-        <p id="skill2-desc">Custom bot scripts for WhatsApp automation, including push contact bots and rental services.</p>
-        <div class="skill-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85" aria-label="Bot Development skill level">
-          <div class="skill-bar-fill" style="--skill-level: 85%"></div>
-        </div>
-      </article>
-
-      <article class="skill" tabindex="0" aria-describedby="skill3-desc">
-        <h3>Social Media Boosting</h3>
-        <p id="skill3-desc">Services for boosting social media presence and engagement through proven strategies and automation.</p>
-        <div class="skill-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" aria-label="Social Media Boosting skill level">
-          <div class="skill-bar-fill" style="--skill-level: 80%"></div>
-        </div>
-      </article>
-
-      <article class="skill" tabindex="0" aria-describedby="skill4-desc">
-        <h3>Virtual Number Provision</h3>
-        <p id="skill4-desc">Reliable virtual numbers for various countries to support SMS verification and multi-account management.</p>
-        <div class="skill-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" aria-label="Virtual Number skill level">
-          <div class="skill-bar-fill" style="--skill-level: 75%"></div>
-        </div>
-      </article>
-
-      <article class="skill" tabindex="0" aria-describedby="skill5-desc">
-        <h3>Game Top-Up & Mobile Data</h3>
-        <p id="skill5-desc">Fast and secure top-up services for popular games and mobile data packages.</p>
-        <div class="skill-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="95" aria-label="Game Top-Up skill level">
-          <div class="skill-bar-fill" style="--skill-level: 95%"></div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="contact" aria-labelledby="contact-title" tabindex="-1">
-    <h2 id="contact-title">Get in Touch</h2>
-    <div class="contact-container">
-      <h3>Contact Me</h3>
-      <div class="contact-info">
-        <a href="tel:+6281329731976" aria-label="Call Sathya Store"><i class="fas fa-phone"></i> +62 813-2973-1976</a>
-        <a href="mailto:sathyastore003@gmail.com" aria-label="Email Sathya Store"><i class="fas fa-envelope"></i> sathyastore033@gmail.com</a>
-        <a href="https://wa.me/6281329731976" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    &copy; 2025 SATHYA STORE — Pro Gamer Developer. All rights reserved.
-  </footer>
-
-  <script>
-    // Mobile menu toggle
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navLinks = document.querySelector(".nav-links");
-
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-      menuToggle.classList.toggle("active");
-      menuToggle.setAttribute("aria-expanded", menuToggle.classList.contains("active"));
-    });
-
-    // Close menu when clicking a nav link (mobile)
-    navLinks.querySelectorAll("a").forEach((link) =>
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("active");
-        menuToggle.classList.remove("active");
-        menuToggle.setAttribute("aria-expanded", "false");
-      })
-    );
-
-    // Animate skill bars on scroll
-    function isInViewport(element) {
-      const rect = element.getBoundingClientRect();
-      return rect.top <= window.innerHeight && rect.bottom >= 0;
-    }
-
-    function animateSkills() {
-      document.querySelectorAll(".skill").forEach((skill) => {
-        if (isInViewport(skill)) {
-          skill.classList.add("visible");
+    
+    <audio id="bgMusic" loop>
+        <source src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/7524451670626667269.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        // Music control
+        const musicControl = document.getElementById('musicControl');
+        const bgMusic = document.getElementById('bgMusic');
+        let isPlaying = false;
+        
+        musicControl.addEventListener('click', function() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicControl.innerHTML = '<i class="fas fa-music"></i>';
+            } else {
+                bgMusic.play();
+                musicControl.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        // Show QRIS
+        function showQRIS() {
+            document.getElementById('qrisContainer').style.display = 'block';
+            document.getElementById('accountDetails').style.display = 'none';
         }
-      });
-    }
-
-    window.addEventListener("scroll", animateSkills);
-    window.addEventListener("load", animateSkills);
-  </script>
+        
+        // Show account details
+        function showAccount(method, number) {
+            document.getElementById('qrisContainer').style.display = 'none';
+            document.getElementById('accountDetails').style.display = 'block';
+            document.getElementById('methodName').innerText = method;
+            document.getElementById('accountNumber').innerText = number;
+        }
+        
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            if (text === 'QRIS Code copied!') {
+                // For QRIS, we'll just show a message since there's no number to copy
+                alert('Please take a screenshot of the QR code for payment');
+                return;
+            }
+            
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Copied to clipboard: ' + text);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+                alert('Failed to copy text. Please copy manually.');
+            });
+        }
+        
+        // Initially show QRIS
+        window.onload = function() {
+            showQRIS();
+        };
+    </script>
 </body>
 </html>
