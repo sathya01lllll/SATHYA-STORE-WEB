@@ -261,14 +261,14 @@
         <div class="content">
             <div class="payment-methods">
                 <div class="payment-method" onclick="showQRIS()">
-                    <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris.png" alt="QRIS">
+                    <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris.png" alt="QRIS 1">
                     <span>QRIS 1</span>
                 </div>
 
                 <div class="content">
             <div class="payment-methods">
                 <div class="payment-method" onclick="showQRIS()">
-                    <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris1.png" alt="QRIS">
+                    <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris1.png" alt="QRIS 2">
                     <span>QRIS 2 </span>
                 </div>
                 
@@ -319,7 +319,17 @@
                     <i class="fas fa-copy"></i> Copy Payment Code
                 </button>
             </div>
+
+<div class="qris-container" id="qrisContainer" style="display: none;">
+                <h3 class="qris-title">QRIS Payment</h3>
+                <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris1.png" alt="QRIS Code">
+                <p>Scan this QR code using your mobile banking app</p>
+                <button class="btn" onclick="copyToClipboard('QRIS Code copied!')">
+                    <i class="fas fa-copy"></i> Copy Payment Code
+                </button>
+            </div>
             
+                    
             <div class="account-details" id="accountDetails" style="display: none;">
                 <h3 id="accountTitle">Account Details</h3>
                 <div class="account-item">
