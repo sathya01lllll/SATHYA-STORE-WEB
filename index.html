@@ -260,26 +260,26 @@
         
         <div class="content">
             <div class="payment-methods">
-                <div class="payment-method" onclick="showQRIS()">
-                    <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris.png" alt="QRIS 1">
+                <div class="payment-method" onclick="showQRIS('qris1')">
+                    <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris.png" alt="QRIS">
                     <span>QRIS 1</span>
                 </div>
-
-                <div class="content">
-            <div class="payment-methods">
-                <div class="payment-method" onclick="showQRIS()">
-                    <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris1.png" alt="QRIS 2">
-                    <span>QRIS 2 </span>
+                
+                <div class="payment-method" onclick="showQRIS('qris2')">
+                    <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris1.png" alt="QRIS">
+                    <span>QRIS 2</span>
                 </div>
                 
                 <div class="payment-method" onclick="showAccount('DANA', '081329731976')">
                     <i class="fab fa-google-wallet" style="color: #00a0e9;"></i>
                     <span>DANA</span>
                 </div>
+                
                 <div class="payment-method" onclick="showAccount('SEABANK', '901528584218')">
                     <i class="fab fa-google-wallet" style="color: #00a0e9;"></i>
                     <span>SEABANK</span>
                 </div>
+                
                 <div class="payment-method" onclick="showAccount('Gopay', '081329731976')">
                     <i class="fas fa-wallet" style="color: #00aa13;"></i>
                     <span>Gopay</span>
@@ -311,25 +311,24 @@
                 </div>
             </div>
             
-            <div class="qris-container" id="qrisContainer" style="display: none;">
-                <h3 class="qris-title">QRIS Payment</h3>
+            <div class="qris-container" id="qris1Container">
+                <h3 class="qris-title">QRIS Payment 1</h3>
                 <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris.png" alt="QRIS Code">
                 <p>Scan this QR code using your mobile banking app</p>
-                <button class="btn" onclick="copyToClipboard('QRIS Code copied!')">
-                    <i class="fas fa-copy"></i> Copy Payment Code
-                </button>
-            </div>
-
-<div class="qris-container" id="qrisContainer" style="display: none;">
-                <h3 class="qris-title">QRIS Payment</h3>
-                <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris1.png" alt="QRIS Code">
-                <p>Scan this QR code using your mobile banking app</p>
-                <button class="btn" onclick="copyToClipboard('QRIS Code copied!')">
+                <button class="btn" onclick="copyQRIS('qris1')">
                     <i class="fas fa-copy"></i> Copy Payment Code
                 </button>
             </div>
             
-                    
+            <div class="qris-container" id="qris2Container" style="display: none;">
+                <h3 class="qris-title">QRIS Payment 2</h3>
+                <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris1.png" alt="QRIS Code">
+                <p>Scan this QR code using your mobile banking app</p>
+                <button class="btn" onclick="copyQRIS('qris2')">
+                    <i class="fas fa-copy"></i> Copy Payment Code
+                </button>
+            </div>
+            
             <div class="account-details" id="accountDetails" style="display: none;">
                 <h3 id="accountTitle">Account Details</h3>
                 <div class="account-item">
@@ -388,27 +387,28 @@
         });
         
         // Show QRIS
-        function showQRIS() {
-            document.getElementById('qrisContainer').style.display = 'block';
+        function showQRIS(qrisType) {
+            document.getElementById('qris1Container').style.display = qrisType === 'qris1' ? 'block' : 'none';
+            document.getElementById('qris2Container').style.display = qrisType === 'qris2' ? 'block' : 'none';
             document.getElementById('accountDetails').style.display = 'none';
         }
         
         // Show account details
         function showAccount(method, number) {
-            document.getElementById('qrisContainer').style.display = 'none';
+            document.getElementById('qris1Container').style.display = 'none';
+            document.getElementById('qris2Container').style.display = 'none';
             document.getElementById('accountDetails').style.display = 'block';
             document.getElementById('methodName').innerText = method;
             document.getElementById('accountNumber').innerText = number;
         }
         
+        // Copy QRIS
+        function copyQRIS(qrisType) {
+            alert('Please take a screenshot of the QR code for payment');
+        }
+        
         // Copy to clipboard
         function copyToClipboard(text) {
-            if (text === 'QRIS Code copied!') {
-                // For QRIS, we'll just show a message since there's no number to copy
-                alert('Please take a screenshot of the QR code for payment');
-                return;
-            }
-            
             navigator.clipboard.writeText(text).then(function() {
                 alert('Copied to clipboard: ' + text);
             }, function(err) {
@@ -417,9 +417,9 @@
             });
         }
         
-        // Initially show QRIS
+        // Initially show QRIS 1
         window.onload = function() {
-            showQRIS();
+            showQRIS('qris1');
         };
     </script>
 </body>
