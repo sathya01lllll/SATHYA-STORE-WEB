@@ -1,4 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SATHYA STORE Payment</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SATHYA STORE Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
         
         :root {
@@ -239,7 +246,130 @@
                 font-size: 20px;
             }
         }
-    </style> </head><body><div class="container"><div class="header"><div class="music-control" id="musicControl"><i class="fas fa-music"></i></div><h1>SATHYA STORE PAYMENT</h1><p>Choose your preferred payment method</p></div><div class="content"><div class="payment-methods"><div class="payment-method" onclick="showQRIS('qris1')"><img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris.png" alt="QRIS"><span>QRIS 1</span></div><div class="payment-method" onclick="showQRIS('qris2')"><img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris1.PNG" alt="QRIS"><span>QRIS 2</span></div><div class="payment-method" onclick="showAccount('DANA', '081329731976')"><i class="fab fa-google-wallet" style="color: #00a0e9;"></i><span>DANA</span></div><div class="payment-method" onclick="showAccount('SEABANK', '901528584218')"><i class="fab fa-google-wallet" style="color: #00a0e9;"></i><span>SEABANK</span></div><div class="payment-method" onclick="showAccount('Gopay', '081329731976')"><i class="fas fa-wallet" style="color: #00aa13;"></i><span>Gopay</span></div><div class="payment-method" onclick="showAccount('OVO', '081329731976')"><i class="fas fa-mobile-alt" style="color: #4e2e8a;"></i><span>OVO</span></div><div class="payment-method" onclick="window.open('https://saweria.co/sathyastore', '_blank')"><i class="fas fa-hand-holding-usd" style="color: #f8d64e;"></i><span>Saweria</span></div><div class="payment-method" onclick="window.open('https://www.paypal.me/sathyamahesvara', '_blank')"><i class="fab fa-paypal" style="color: #003087;"></i><span>PayPal</span></div><div class="payment-method" onclick="showAccount('ShopeePay', '081329731976')"><i class="fas fa-shopping-bag" style="color: #ee4d2d;"></i><span>ShopeePay</span></div><div class="payment-method" onclick="showAccount('NOBU MADERA', '86100769153')"><i class="fas fa-university" style="color: #8b4513;"></i><span>NOBU MADERA</span></div></div><div class="qris-container" id="qris1Container"><h3 class="qris-title">QRIS Payment 1</h3><img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris.png" alt="QRIS Code"><p>Scan this QR code using your mobile banking app</p><button class="btn" onclick="copyQRIS('qris1')"><i class="fas fa-copy"></i> Copy Payment Code </button></div><div class="qris-container" id="qris2Container" style="display: none;"><h3 class="qris-title">QRIS Payment 2</h3><img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris1.PNG" alt="QRIS Code"><p>Scan this QR code using your mobile banking app</p><button class="btn" onclick="copyQRIS('qris2')"><i class="fas fa-copy"></i> Copy Payment Code </button></div><div class="account-details" id="accountDetails" style="display: none;"><h3 id="accountTitle">Account Details</h3><div class="account-item"><span>Account Name:</span><span>SATHYA STORE/ɪ ᴘᴜᴛᴜ ꜱᴀᴛʜʏᴀ ᴍᴀʜᴇꜱᴠᴀʀᴀ</span></div><div class="account-item"><span>Payment Method:</span><span id="methodName">-</span></div><div class="account-item"><span>Account Number:</span><span id="accountNumber">-</span></div><button class="btn" onclick="copyToClipboard(document.getElementById('accountNumber').innerText)"><i class="fas fa-copy"></i> Copy Account Number </button></div><div class="note"><strong>📌 Important Notes:</strong><ul><li>Send <em>screenshot</em> or <em>transaction ID</em> after payment</li><li>Order will be <em>processed after payment confirmation</em></li><li>Save <em>payment proof</em> for warranty claims</li></ul><p style="margin-top: 10px; font-style: italic;">⚡️ Thank you for choosing SATHYA STORE!</p></div></div><div class="footer"> &copy; 2023 SATHYA STORE | All Rights Reserved </div></div><audio id="bgMusic" loop><source src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/7524451670626667269.mp3" type="audio/mpeg"> Your browser does not support the audio element. </audio> <script>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="music-control" id="musicControl">
+                <i class="fas fa-music"></i>
+            </div>
+            <h1>SATHYA STORE PAYMENT</h1>
+            <p>Choose your preferred payment method</p>
+        </div>
+        
+        <div class="content">
+            <div class="payment-methods">
+                <div class="payment-method" onclick="showQRIS('qris1')">
+                    <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris.png" alt="QRIS">
+                    <span>QRIS 1</span>
+                </div>
+                
+                <div class="payment-method" onclick="showQRIS('qris2')">
+                    <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris1.PNG" alt="QRIS">
+                    <span>QRIS 2</span>
+                </div>
+                
+                <div class="payment-method" onclick="showAccount('DANA', '081329731976')">
+                    <i class="fab fa-google-wallet" style="color: #00a0e9;"></i>
+                    <span>DANA</span>
+                </div>
+                
+                <div class="payment-method" onclick="showAccount('SEABANK', '901528584218')">
+                    <i class="fab fa-google-wallet" style="color: #00a0e9;"></i>
+                    <span>SEABANK</span>
+                </div>
+                
+                <div class="payment-method" onclick="showAccount('Gopay', '081329731976')">
+                    <i class="fas fa-wallet" style="color: #00aa13;"></i>
+                    <span>Gopay</span>
+                </div>
+                
+                <div class="payment-method" onclick="showAccount('OVO', '081329731976')">
+                    <i class="fas fa-mobile-alt" style="color: #4e2e8a;"></i>
+                    <span>OVO</span>
+                </div>
+                
+                <div class="payment-method" onclick="window.open('https://saweria.co/sathyastore', '_blank')">
+                    <i class="fas fa-hand-holding-usd" style="color: #f8d64e;"></i>
+                    <span>Saweria</span>
+                </div>
+                
+                <div class="payment-method" onclick="window.open('https://www.paypal.me/sathyamahesvara', '_blank')">
+                    <i class="fab fa-paypal" style="color: #003087;"></i>
+                    <span>PayPal</span>
+                </div>
+                
+                <div class="payment-method" onclick="showAccount('ShopeePay', '081329731976')">
+                    <i class="fas fa-shopping-bag" style="color: #ee4d2d;"></i>
+                    <span>ShopeePay</span>
+                </div>
+                
+                <div class="payment-method" onclick="showAccount('NOBU MADERA', '86100769153')">
+                    <i class="fas fa-university" style="color: #8b4513;"></i>
+                    <span>NOBU MADERA</span>
+                </div>
+            </div>
+            
+            <div class="qris-container" id="qris1Container">
+                <h3 class="qris-title">QRIS Payment 1</h3>
+                <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris.png" alt="QRIS Code">
+                <p>Scan this QR code using your mobile banking app</p>
+                <button class="btn" onclick="copyQRIS('qris1')">
+                    <i class="fas fa-copy"></i> Copy Payment Code
+                </button>
+            </div>
+            
+            <div class="qris-container" id="qris2Container" style="display: none;">
+                <h3 class="qris-title">QRIS Payment 2</h3>
+                <img src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/qris1.PNG" alt="QRIS Code">
+                <p>Scan this QR code using your mobile banking app</p>
+                <button class="btn" onclick="copyQRIS('qris2')">
+                    <i class="fas fa-copy"></i> Copy Payment Code
+                </button>
+            </div>
+            
+            <div class="account-details" id="accountDetails" style="display: none;">
+                <h3 id="accountTitle">Account Details</h3>
+                <div class="account-item">
+                    <span>Account Name:</span>
+                    <span>SATHYA STORE/ɪ ᴘᴜᴛᴜ ꜱᴀᴛʜʏᴀ ᴍᴀʜᴇꜱᴠᴀʀᴀ</span>
+                </div>
+                <div class="account-item">
+                    <span>Payment Method:</span>
+                    <span id="methodName">-</span>
+                </div>
+                <div class="account-item">
+                    <span>Account Number:</span>
+                    <span id="accountNumber">-</span>
+                </div>
+                <button class="btn" onclick="copyToClipboard(document.getElementById('accountNumber').innerText)">
+                    <i class="fas fa-copy"></i> Copy Account Number
+                </button>
+            </div>
+            
+            <div class="note">
+                <strong>📌 Important Notes:</strong>
+                <ul>
+                    <li>Send <em>screenshot</em> or <em>transaction ID</em> after payment</li>
+                    <li>Order will be <em>processed after payment confirmation</em></li>
+                    <li>Save <em>payment proof</em> for warranty claims</li>
+                </ul>
+                <p style="margin-top: 10px; font-style: italic;">⚡️ Thank you for choosing SATHYA STORE!</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            &copy; 2023 SATHYA STORE | All Rights Reserved
+        </div>
+    </div>
+    
+    <audio id="bgMusic" loop>
+        <source src="https://raw.githubusercontent.com/sathya01lllll/qris/refs/heads/main/7524451670626667269.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
         // Music control
         const musicControl = document.getElementById('musicControl');
         const bgMusic = document.getElementById('bgMusic');
@@ -291,4 +421,6 @@
         window.onload = function() {
             showQRIS('qris1');
         };
-    </script> </body></html>
+    </script>
+</body>
+</html>
